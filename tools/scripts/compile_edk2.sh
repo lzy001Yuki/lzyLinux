@@ -16,3 +16,6 @@ source edksetup.sh
 make -C BaseTools -j$(nproc)
 
 build
+
+build -p ShellPkg/ShellPkg.dsc
+build -p LzyPkg/LzyPkg.dsc

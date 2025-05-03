@@ -5,3 +5,4 @@ playground/
 
 .clinerules
 /tools/config/edk2/.AutoGenIdFile.txt
+.vscode/
