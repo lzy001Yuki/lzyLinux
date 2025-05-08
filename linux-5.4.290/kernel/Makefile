@@ -37,6 +37,7 @@ CFLAGS_sys_ni.o = $(DISABLE_LTO)
 
 obj-y += sched/
 obj-y += locking/
+obj-y += kv_store.o
 obj-y += power/
 obj-y += printk/
 obj-y += irq/

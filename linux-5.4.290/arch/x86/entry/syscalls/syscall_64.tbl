@@ -358,6 +358,9 @@
 434	common	pidfd_open		__x64_sys_pidfd_open
 435	common	clone3			__x64_sys_clone3/ptregs
 
+440 common  write_kv        __x64_sys_write_kv
+441 common  read_kv         __x64_sys_read_kv
+
 #
 # x32-specific system call numbers start at 512 to avoid cache impact
 # for native 64-bit operation. The __x32_compat_sys stubs are created

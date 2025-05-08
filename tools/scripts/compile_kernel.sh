@@ -14,4 +14,4 @@ docker run --rm \
     -u $(id -u):$(id -g) \
     strangelinux-builder \
     bash -c "cd /workspace/linux-5.4.290 && \
-    make KCONFIG_CONFIG=../tools/config/kernel/.config O=../build/kernel -j$(nproc)"
+    make KCONFIG_CONFIG=../tools/config/kernel/.config O=../build/kernel -j$(nproc) -s"

@@ -220,6 +220,18 @@ static void __exit_signal(struct task_struct *tsk)
 	}
 }
 
+void clear_kv(struct task_struct *cur) {
+    struct kv* tmp;
+    struct hlist_node *nxt;
+    int i;
+    for (i = 0; i < 1024; i++) {
+        hlist_for_each_entry_safe(tmp, nxt, &cur->kv_struct->kv_store[i], node) {
+            hlist_del(&tmp->node);
+            kfree(tmp);
+        }
+    }
+}
+
 static void delayed_put_task_struct(struct rcu_head *rhp)
 {
 	struct task_struct *tsk = container_of(rhp, struct task_struct, rcu);
@@ -273,6 +285,7 @@ repeat:
 	}
 
 	write_unlock_irq(&tasklist_lock);
+	clear_kv(p);
 	release_thread(p);
 	put_task_struct_rcu_user(p);
 

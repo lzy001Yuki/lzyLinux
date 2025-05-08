@@ -867,6 +867,7 @@ static struct task_struct *dup_task_struct(struct task_struct *orig, int node)
 	unsigned long *stack;
 	struct vm_struct *stack_vm_area __maybe_unused;
 	int err;
+	int i;
 
 	if (node == NUMA_NO_NODE)
 		node = tsk_fork_get_node(orig);
@@ -912,6 +913,10 @@ static struct task_struct *dup_task_struct(struct task_struct *orig, int node)
 #endif
 
 	setup_thread_stack(tsk, orig);
+	for (i = 0; i < 1024; i++) {
+		INIT_HLIST_HEAD(&tsk->kv_struct->kv_store[i]);
+		spin_lock_init(&tsk->kv_struct->kv_locks[i]);
+	}
 	clear_user_return_notifier(tsk);
 	clear_tsk_need_resched(tsk);
 	set_task_stack_end_magic(tsk);
