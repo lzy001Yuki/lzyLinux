@@ -1,8 +1,7 @@
 #include "impl.h"
 void* mmap_remap(void *addr, size_t size) {
     void* new_map = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
-    if (addr != NULL) munmap(addr, size);
-    printf("Mapped address: %p\n", new_map);
+    memcpy(new_map, addr, size);
     if (new_map == MAP_FAILED) {
         perror("mmap failed");
         return NULL;
