@@ -30,14 +30,14 @@
 ### 系统启动
 
 - [x] 基础：Read ACPI Table
-- [ ] 实践：Hack ACPI Table
+- [x] 实践：Hack ACPI Table
 - [ ] 设计：UEFI 运行时服务
 
 
 ### 系统调用
 
 - [x] 基础：用户定义的系统调用
-- [ ] 实践：vDSO
+- [x] 实践：vDSO
 - [ ] 设计：无需中断的系统调用
 
 ### 内存管理
