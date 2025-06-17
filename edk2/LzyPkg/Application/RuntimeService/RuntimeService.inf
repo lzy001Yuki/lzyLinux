@@ -1,13 +1,13 @@
 [Defines]
   INF_VERSION                    = 0x00010006
-  BASE_NAME                      = HackAcpi
-  FILE_GUID                      = 5f641230-d227-46bb-b7c9-1a7dec952726
+  BASE_NAME                      = RuntimeService
+  FILE_GUID                      = 52d1cf1b-7391-4ecb-bc57-cf621a549147
   MODULE_TYPE                    = UEFI_APPLICATION
   VERSION_STRING                 = 1.0
-  ENTRY_POINT                    = HackMain
+  ENTRY_POINT                    = RuntimeMain
 
 [Sources]
-  HackAcpi.c
+  Runtime.c
 
 [Packages]
   MdePkg/MdePkg.dec
@@ -25,6 +25,10 @@
   UefiBootServicesTableLib
   UefiRuntimeServicesTableLib
   PrintLib
+
+[Protocols]
+  gEfiAcpiTableProtocolGuid    ## CONSUMES
+  gEfiAcpiSdtProtocolGuid      ## CONSUMES
 
 [Guids]
   gEfiAcpiTableGuid           ## SOMETIMES_CONSUMES ## SystemTable 

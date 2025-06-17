@@ -84,7 +84,7 @@ cp "$OVMF_VARS" "${PLAYGROUND_DIR}/OVMF_VARS.fd"
 # 启动QEMU
 qemu-system-x86_64 \
     -machine q35,accel=kvm \
-    -m 8G \
+    -m 4G \
     -smp 4 \
     -drive if=pflash,format=raw,unit=0,file="${OVMF_CODE}",readonly=on \
     -drive if=pflash,format=raw,unit=1,file="${PLAYGROUND_DIR}/OVMF_VARS.fd" \

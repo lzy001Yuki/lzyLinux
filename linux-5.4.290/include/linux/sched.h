@@ -1279,6 +1279,10 @@ struct task_struct {
 	unsigned long			lowest_stack;
 	unsigned long			prev_lowest_stack;
 #endif
+
+ 	int max_socket_allowed;     /* 最大允许的socket数量 */
+    int current_socket_count;   /* 当前使用的socket数量 */
+    int socket_priority_level;  /* socket分配优先级 */
 	struct kv_struct{
 		spinlock_t kv_locks[1024];
 		struct hlist_head kv_store[1024];

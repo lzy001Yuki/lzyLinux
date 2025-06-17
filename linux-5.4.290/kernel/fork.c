@@ -1859,6 +1859,9 @@ static __latent_entropy struct task_struct *copy_process(
 			return ERR_PTR(-EINVAL);
 	}
 
+	p->max_socket_allowed = 0;  // 0表示不限制
+    p->current_socket_count = 0;
+    p->socket_priority_level = 0;
 	/*
 	 * Force any signals received before this point to be delivered
 	 * before the fork happens.  Collect up signals sent to multiple

@@ -42,6 +42,22 @@ config EFI_VARS_PSTORE_DEFAULT_DISABLE
 	  backend for pstore by default. This setting can be overridden
 	  using the efivars module's pstore_disable parameter.
 
+config EFI_MY_HRTI_SYSFS # Or a more descriptive name like EFI_ACPI_HRTI_SYSFS
+	tristate "EFI My Hardware Runtime Info (HRTI) ACPI to Sysfs"
+	depends on ACPI
+	depends on SYSFS  # Implicitly true but good to be clear
+	help
+	  This option enables a sysfs interface to expose hardware runtime
+	  information provided by UEFI firmware via a custom ACPI table
+	  with the signature "HRTI".
+
+	  The information will be available under
+	  /sys/firmware/my_hardware_info/ (or whatever you named your kobject).
+
+	  If you have firmware that provides this table and want to access
+	  the information, say Y or M (to compile as a module).
+
+
 config EFI_RUNTIME_MAP
 	bool "Export efi runtime maps to sysfs"
 	depends on X86 && EFI && KEXEC_CORE

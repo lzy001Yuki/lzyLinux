@@ -53,6 +53,18 @@
 - [ ] 设计：用户空间下的内存磁盘
 
 ### 网络与外部设备
-- [ ] 基础：tcpdump 和 socket 管理
+- [x] 基础：tcpdump 和 socket 管理
+``` c
+pcap_t *pcap_open_live(const char *device, int snaplen, int promisc, int to_ms, char *errbuf);
+int pcap_compile(pcap_t *p, struct bpf_program *fp, char *str, int optimize, bpf_u_int32 netmask);
+int pcap_setfilter(pcap_t *p, struct bpf_program *fp);
+int pcap_loop(pcap_t *p, int cnt, pcap_handler callback, u_char *user);
+```
 - [ ] 实践：NCCL
 - [ ] 设计：DPDK
+
+
+
+
+### 综合
+- [x] 内核空间下的内存磁盘

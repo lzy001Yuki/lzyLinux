@@ -74,6 +74,7 @@
 #include <linux/highmem.h>
 #include <linux/mount.h>
 #include <linux/pseudo_fs.h>
+#include <linux/sched.h>
 #include <linux/security.h>
 #include <linux/syscalls.h>
 #include <linux/compat.h>
@@ -1508,6 +1509,11 @@ int __sys_socket(int family, int type, int protocol)
 	BUILD_BUG_ON(SOCK_CLOEXEC & SOCK_TYPE_MASK);
 	BUILD_BUG_ON(SOCK_NONBLOCK & SOCK_TYPE_MASK);
 
+	if (current->max_socket_allowed > 0 && 
+        current->current_socket_count >= current->max_socket_allowed) {
+        return -EMFILE;  // 达到线程socket限制
+    }
+
 	flags = type & ~SOCK_TYPE_MASK;
 	if (flags & ~(SOCK_CLOEXEC | SOCK_NONBLOCK))
 		return -EINVAL;
@@ -1519,10 +1525,11 @@ int __sys_socket(int family, int type, int protocol)
 	retval = sock_create(family, type, protocol, &sock);
 	if (retval < 0)
 		return retval;
-
+	if (retval >= 0) {
+        current->current_socket_count++;
+    }
 	return sock_map_fd(sock, flags & (O_CLOEXEC | O_NONBLOCK));
 }
-
 SYSCALL_DEFINE3(socket, int, family, int, type, int, protocol)
 {
 	return __sys_socket(family, type, protocol);

@@ -1218,6 +1218,9 @@ asmlinkage long sys_old_mmap(struct mmap_arg_struct __user *arg);
 
 asmlinkage long sys_write_kv(int k, int v);
 asmlinkage long sys_read_kv(int k);
+asmlinkage long sys_configure_socket_fairness(pid_t tid, 
+                                            int max_socket_allowed, 
+                                            int priority_level);
 
 /*
  * Not a real system call, but a placeholder for syscalls which are

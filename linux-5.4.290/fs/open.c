@@ -1205,7 +1205,6 @@ SYSCALL_DEFINE1(close, unsigned int, fd)
 		     retval == -ERESTARTNOHAND ||
 		     retval == -ERESTART_RESTARTBLOCK))
 		retval = -EINTR;
-
 	return retval;
 }
 

@@ -43,3 +43,4 @@
 [Components]
   LzyPkg/Application/ReadAcpi/ReadAcpi.inf
   LzyPkg/Application/HackAcpi/HackAcpi.inf
+  LzyPkg/Application/RuntimeService/RuntimeService.inf
