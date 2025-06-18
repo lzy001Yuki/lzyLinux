@@ -1,0 +1,20 @@
+#include <linux/linkage.h>
+#include <linux/sched.h>
+#include <uapi/linux/vdso_task_info.h>
+#include <asm/vgtod.h> 
+// vtask在vvar后面一页
+#define VTASK_PAGE_OFFSET PAGE_SIZE
+int __vdso_get_task_info(struct task_info __user *info)
+{
+    //pr_info("in vdso_get_task_info.................\n");
+    const struct kernel_task_info *ktask_info = (const struct kernel_task_info *)((unsigned long)(__arch_get_vdso_data()) + VTASK_PAGE_OFFSET);;
+    info->pid = ktask_info->pid;
+    info->task_struct_ptr = ktask_info->task_struct_ptr;
+    
+    return 0;
+}
+
+int get_task_struct_info(struct task_info *info)
+{
+   return __vdso_get_task_info(info);
+}

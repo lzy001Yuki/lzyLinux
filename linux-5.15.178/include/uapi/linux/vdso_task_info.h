@@ -1,0 +1,15 @@
+#ifndef D4DC698D_1E6A_4CBF_B5CB_C4DBE206D99D
+#define D4DC698D_1E6A_4CBF_B5CB_C4DBE206D99D
+#include <asm/vdso.h>
+// 用户态
+struct task_info{
+    pid_t pid;
+    void *task_struct_ptr;
+};
+
+struct kernel_task_info{
+    pid_t pid;
+    void *task_struct_ptr;
+};
+
+#endif /* D4DC698D_1E6A_4CBF_B5CB_C4DBE206D99D */
