@@ -1,0 +1,30 @@
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = HackAcpi
+  FILE_GUID                      = 5f641230-d227-46bb-b7c9-1a7dec952726
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = HackMain
+
+[Sources]
+  HackAcpi.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  LzyPkg/LzyPkg.dec
+
+
+[LibraryClasses]
+  UefiApplicationEntryPoint
+  UefiLib
+  BaseLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  DebugLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  PrintLib
+
+[Guids]
+  gEfiAcpiTableGuid           ## SOMETIMES_CONSUMES ## SystemTable 
