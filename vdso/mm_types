@@ -1,0 +1,3 @@
+403,404d402
+< 	struct page *vvar_page;
+<     struct page *vtask_page;
